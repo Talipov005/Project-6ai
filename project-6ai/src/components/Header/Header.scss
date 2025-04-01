@@ -1,0 +1,103 @@
+.header-top {
+    background-color: #F6F7FB;
+    height: 36px;
+
+    
+    
+
+    .nur {
+        display: flex;
+        justify-content: space-between; 
+        align-items: center;
+    }
+
+    .header-top-left {
+        list-style: none;
+        display: flex;
+        gap: 40px;
+    }
+    
+    .header-top-right {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+        .til {
+            display: flex;
+            gap: 10px;
+        }
+        select {
+            background-color: #ffffff00;
+            border: none;
+
+            border-radius: 10px;
+        }
+    }
+    
+}
+.header-main-top {
+    display: flex;
+    gap: 80px;
+    margin-top: 15px;
+    border: 2px solid saddlebrown;
+    
+    .cart-heart {
+        margin-top: 30px;
+        gap: 39px;
+        img {
+            width: 30px;
+        }
+    }
+
+    .search {
+        display: flex;
+        width: 665px;
+        height: 40px;
+        border-radius: 4px;
+        overflow: hidden; 
+        position: relative;
+        margin-top: 30px;
+
+
+
+        input {
+            flex: 1; // Растягивает инпут на всю доступную ширину
+            border: 3px solid #399A3A;
+            padding: 8px;
+            outline: none;
+            
+        }
+        
+        .btn-search {
+            
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            padding: 0 12px;
+            background-color: #399A3A;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            
+            button {
+                background-color: #ffffff00;
+                color: white;
+                border: none;
+                font-weight: 500;
+                font-size: 16px;
+                line-height: 100%;
+                letter-spacing: 0%;
+                
+            }
+            img {
+                width: 16px;
+                height: 16px;
+            }
+            
+            &:hover {
+                background-color: darkgreen;
+            }
+        }
+    }
+}
