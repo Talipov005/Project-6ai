@@ -1,0 +1,18 @@
+.banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+  }
+  
+  .carousel {
+    width: 1300px; /* Ограничение ширины */
+    max-width: 100%; /* Адаптивность */
+  }
+  
+  .carousel img {
+    width: 1300px; /* Фиксированная ширина */
+    height: auto; /* Сохранение пропорций */
+    object-fit: cover; /* Подгонка изображения */
+  }
+  
