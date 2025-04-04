@@ -2,6 +2,9 @@ import React from 'react'
 import "./Home.scss"
 import Banner from '../components/banner/Banner'
 import Popular from '../components/popular/Popular'
+import Card from '../components/besh-card/card'
+import Text from '../components/text/Text'
+import Foto from '../components/pngfoto/Foto'
 import card1 from "../assets/svg/card 01.svg"
 import card2 from "../assets/svg/card 02.svg"
 import card3 from "../assets/svg/card 03.svg"
@@ -30,6 +33,9 @@ function Home() {
         </div>
       </div>
       <Popular/>
+      <Card/>
+      <Text/>
+      <Foto/>
     </div>
   )
 }
