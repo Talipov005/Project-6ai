@@ -6,6 +6,7 @@ import logo from "../../assets/svg/logo.svg";
 import search from "../../assets/svg/search.svg";
 import heart from "../../assets/svg/heart.svg"
 import cart from "../../assets/svg/cart.svg"
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
@@ -15,10 +16,18 @@ function Header() {
             <div className="top-container container">
             <div className="top-header-left ">
               <ul>
+                <Link to="/komponi">
                 <li>О компании</li>
+                </Link>
+                <Link to="/dostavka">
                 <li>Доставка и оплата</li>
+                </Link>
+                <Link to="/garant">
                 <li>Гарантии</li>
+                </Link>
+                <Link to="/kontact">
                 <li>Контакты</li>
+                </Link>
               </ul>
             </div>
             <div className="top-header-right ">
@@ -36,7 +45,9 @@ function Header() {
             </div>
         </div>
         <div className="center-header container">
+          <Link to="">
   <img src={logo} alt="Логотип" className="logo" />
+          </Link>
   <div className="center-right">
     <div className="search">
       <input placeholder="Введите поисковой запрос.." type="text" />
