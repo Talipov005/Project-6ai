@@ -228,5 +228,44 @@
     }
 }
 
+
+
+.header a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .header a:visited {
+    color: inherit;
+  }
+  
+  .header a:hover {
+    color: #399A3A;
+    text-decoration: none;
+  }
+  
+ 
+  .top-header-left ul {
+    list-style: none;
+    display: flex;
+    gap: 45px;
+    padding: 0;
+    margin: 0;
+  
+    li::before {
+      content: "- ";
+      color: #399A3A; 
+    }
+  
+    li {
+      transition: color 0.3s ease;
+      cursor: pointer;
+  
+      &:hover {
+        color: #399A3A;
+      }
+    }
+  }
+  
  
             
