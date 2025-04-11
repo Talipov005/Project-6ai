@@ -1,41 +1,42 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import API from '../axios/apiClient'
 import "./Home.scss"
+import { Link } from 'react-router-dom'
 import Banner from '../components/banner/Banner'
 import Popular from '../components/popular/Popular'
 import Card from '../components/besh-card/card'
 import Text from '../components/text/Text'
 import Foto from '../components/pngfoto/Foto'
-import card1 from "../assets/svg/card 01.svg"
-import card2 from "../assets/svg/card 02.svg"
-import card3 from "../assets/svg/card 03.svg"
-import card4 from "../assets/svg/card 04.svg"
-
 
 function Home() {
+  const [brands, setBrands] = useState([])
+
+  useEffect(() => {
+    API.get("/disert")
+      .then(res => setBrands(res.data))
+      .catch(err => console.log(err))
+  }, [])
+
   return (
     <div>
-      <Banner/>
+      <Banner />
       <div className='brend container'>
         <h1>Выберите бренд</h1>
         <div className='cards'>
-          <div>
-          <img src={card1} alt="" />
-          </div>
-          <div>
-          <img src={card2} alt="" />
-          </div>
-          <div>
-          <img src={card3} alt="" />
-        </div>
-        <div>
-          <img src={card4} alt="" />
-       </div>
+          {brands.map((brand) => (
+            <div key={brand.id} className="card-item">
+              <Link to={`/model/${brand.id}`}>
+                <img src={brand.image} alt={brand.name} />
+              </Link>
+              <div className="brand-name">{brand.name}</div>
+            </div>
+          ))}
         </div>
       </div>
-      <Popular/>
-      <Card/>
-      <Text/>
-      <Foto/>
+      <Popular />
+      <Card />
+      <Text />
+      <Foto />
     </div>
   )
 }
