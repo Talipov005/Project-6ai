@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import API from '../axios/apiClient'
 import "./Madel.scss"
 
 function Madel() {
-  const { brand } = useParams() 
+  const { brand } = useParams()
   const [phones, setPhones] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
   useEffect(() => {
-    API.get("/tecnology") 
+    API.get("/tecnology")
       .then(res => {
-        console.log(res.data)  
-        const filteredPhones = res.data.filter(phone => phone.brandId.toString() === brand.toLowerCase())  
+        const filteredPhones = res.data.filter(phone => phone.brandId.toString() === brand.toLowerCase())
         setPhones(filteredPhones)
         setLoading(false)
       })
@@ -22,7 +21,7 @@ function Madel() {
         setError("Ошибка загрузки данных")
         setLoading(false)
       })
-  }, [brand]) 
+  }, [brand])
 
   if (loading) return <p>Загрузка...</p>
   if (error) return <p>{error}</p>
@@ -32,13 +31,13 @@ function Madel() {
     <div className="madel container">
       <h1>Выберите модель</h1>
       <div className="phones">
-        {phones.map(phone => (
-          <div key={phone.id} className="phone-card">
-            <img src={phone.image} alt={phone.name} />
-            <h2>{phone.name}</h2>
-            <p>{phone.description}</p>
-          </div>
-        ))}
+      {phones.map(phone => (
+          <Link to={`/categories/${phone.id}`} key={phone.id} className="phone-card">
+          <img src={phone.image} alt={phone.name} />
+          <h2>{phone.name}</h2>
+          <p>{phone.description}</p>
+        </Link>
+))}
       </div>
     </div>
   )
