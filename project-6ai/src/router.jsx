@@ -6,6 +6,7 @@ import Dostavka from "./pages/Dostavka";
 import Komponi from "./pages/Komponi";
 import Kontact from "./pages/Kontact";
 import Madel from "./pages/Madel";
+import Categories from "./pages/Categories";
 
 export const myRouter = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ export const myRouter = createBrowserRouter([
       {
         path: "model/:brand",  // теперь будет передаваться бренд, а не id
         element: <Madel />,
+      },
+      {
+        path: "categories/:model",  // теперь будет передаваться бренд, а не id
+        element: <Categories />,
       }
       
     ],
