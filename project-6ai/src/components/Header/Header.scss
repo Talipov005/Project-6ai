@@ -4,14 +4,10 @@
     justify-content: space-between;
     padding: 10px;
     height: 36px;
-    // border: 2px solid saddlebrown;
 
     .top-container {
         display: flex;
         justify-content: space-between;
-        // border: 2px solid saddlebrown;
-        
-
     }
 
     .top-header-left {
@@ -89,14 +85,14 @@
     }
 
     .logo {
-        height: auto; // Оставляем размер логотипа как есть
+        height: auto; 
     }
 
     .center-right {
         display: flex;
         align-items: center;
         flex: 1;
-        justify-content: center; // Центрирует input
+        justify-content: center;
 
         .search {
             display: flex;
@@ -182,20 +178,20 @@
 }
 .bottom-header {
     display: flex;
-    justify-content: space-between; // Выравниваем по центру
+    justify-content: space-between; 
     padding: 10px 0;
     border-bottom: 1px solid #c9c8c8;
 }
 
 .selects {
     display: flex;
-    gap: 60px; // Расстояние между `select`
+    gap: 60px; 
 }
 
 .selects select {
-    width: 80px;  // Фиксированная ширина
-    border: none; // Убираем границу
-    background-color: transparent; // Прозрачный фон
+    width: 80px;  
+    border: none;
+    background-color: transparent; 
     font-size: 14px;
     cursor: pointer;
     outline: none;
@@ -203,18 +199,18 @@
     padding: 5px 0;
     
     &:hover {
-        color: #399A3A; // Меняем цвет при наведении
+        color: #399A3A; 
     }
 }
 .uls {
     display: flex;
-    align-items: center; // Выравниваем `ul` по центру с `select`
+    align-items: center; 
 }
 
 .uls ul {
     display: flex;
     list-style: none;
-    gap: 70px; // Делаем одинаковый отступ между `li` и `select`
+    gap: 70px; 
     padding: 0;
     margin: 0;
 }
@@ -243,9 +239,7 @@
     color: #399A3A;
     text-decoration: none;
   }
-  
- 
-  .top-header-left ul {
+    .top-header-left ul {
     list-style: none;
     display: flex;
     gap: 45px;
