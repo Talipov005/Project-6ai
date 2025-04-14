@@ -1,8 +1,10 @@
 import React from 'react';
 import "./Garant.scss";
+import AnimatedLayout from './Animation';
 
 function Garant() {
   return (
+    <AnimatedLayout>
     <div className='garant container'>
       <h2>Гарантии</h2>
       <p>Запчасти в нашем интернет-магазине тщательно проверяются на наличие брака царапин и механических повреждений перед продажей клиенту.</p>
@@ -82,6 +84,7 @@ function Garant() {
         <li>Системные разъёмы</li>
       </ul>
     </div>
+    </AnimatedLayout>
   );
 }
 
