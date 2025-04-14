@@ -7,6 +7,7 @@ import Popular from '../components/popular/Popular'
 import Card from '../components/besh-card/card'
 import Text from '../components/text/Text'
 import Foto from '../components/pngfoto/Foto'
+import AnimatedLayout from './Animation'
 
 function Home() {
   const [brands, setBrands] = useState([])
@@ -18,8 +19,9 @@ function Home() {
   }, [])
 
   return (
+      <AnimatedLayout>
     <div>
-      <Banner />
+<Banner />
       <div className='brend container'>
         <h1>Выберите бренд</h1>
         <div className='cards'>
@@ -38,6 +40,7 @@ function Home() {
       <Text />
       <Foto />
     </div>
+          </AnimatedLayout>
   )
 }
 
