@@ -5,10 +5,12 @@ import icon2 from "../assets/svg/icon2.svg"
 import icon3 from "../assets/svg/icon3.svg"
 import icon4 from "../assets/svg/icon4.svg"
 import karta from "../assets/img/map.png"
+import AnimatedLayout from "./Animation";
 
 function Kontact() {
   return (
-    <div className="kontact-container container">
+    <AnimatedLayout>
+<div className="kontact-container container">
             <div className="kompani-wrapper__breadcrumb">Главная / О контакты</div>
       <h1>Контакты</h1>
       <div className="kontact-info">
@@ -41,6 +43,7 @@ function Kontact() {
         </div>
       </div>
     </div>
+    </AnimatedLayout>
   );
 }
 

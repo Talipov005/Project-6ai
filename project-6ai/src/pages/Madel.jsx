@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import API from '../axios/apiClient'
 import "./Madel.scss"
+import AnimatedLayout from './Animation'
 
 function Madel() {
   const { brand } = useParams()
@@ -28,7 +29,8 @@ function Madel() {
   if (phones.length === 0) return <p>Телефоны этого бренда не найдены</p>
 
   return (
-    <div className="madel container">
+    <AnimatedLayout>
+      <div className="madel container">
       <h1>Выберите модель</h1>
       <div className="phones">
       {phones.map(phone => (
@@ -40,6 +42,7 @@ function Madel() {
 ))}
       </div>
     </div>
+    </AnimatedLayout>
   )
 }
 

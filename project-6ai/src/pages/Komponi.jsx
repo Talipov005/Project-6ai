@@ -1,10 +1,12 @@
 import React from 'react';
 import "./Komponi.scss";
 import Card from '../components/besh-card/card';
+import AnimatedLayout from './Animation';
 
 function Komponi() {
   return (
-    <div className="kompani-wrapper container">
+    <AnimatedLayout>
+<div className="kompani-wrapper container">
       <div className="kompani-wrapper__breadcrumb">Главная / О компании</div>
       <h2 className="kompani-wrapper__title">О компании <br />No Doors Technology</h2>
 
@@ -20,6 +22,7 @@ function Komponi() {
       </div>
       <Card/>
     </div>
+    </AnimatedLayout>
   );
 }
 
