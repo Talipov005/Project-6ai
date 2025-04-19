@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom' // ✅ Вместо useLocation
+import { useParams, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import './Category.scss'
 
 function Categories() {
-  const { phoneId } = useParams() // ✅ Получаем из URL
+  const { phoneId } = useParams()
+  const navigate = useNavigate()
 
   const [categories, setCategories] = useState([])
   const [loading, setLoading] = useState(true)
@@ -30,6 +31,10 @@ function Categories() {
       })
   }, [phoneId])
 
+  const handleCategoryClick = (categoryId) => {
+    navigate(`/products/${categoryId}`)
+  }
+
   if (loading) return <p>Загрузка...</p>
   if (error) return <p>{error}</p>
   if (categories.length === 0) return <p>Категории не найдены</p>
@@ -39,7 +44,11 @@ function Categories() {
       <h1>Категории по выбранной модели</h1>
       <div className="categories">
         {categories.map(cat => (
-          <div key={cat.id} className="category-card">
+          <div
+            key={cat.id}
+            className="category-card"
+            onClick={() => handleCategoryClick(cat.id)}
+          >
             <img src={cat.img} alt={cat.name} />
             <h2>{cat.name}</h2>
           </div>
