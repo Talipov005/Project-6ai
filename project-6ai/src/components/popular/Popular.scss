@@ -4,8 +4,14 @@
     gap: 65px;
     justify-content: center;
     padding: 30px;
+
   }
-  
+
+  .bg {
+    z-index: -1;
+    position: absolute;
+    filter: brightness(97%);
+  }
   .card {
     width: 260px;
     border: 1px solid #ddd;
