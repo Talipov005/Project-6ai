@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import "./Popular.scss";
 import popular from "../../assets/svg/popular.svg";
-import bg from "../../assets/img/bg.png";
-
 
 const products = [
   {
@@ -37,6 +35,7 @@ const products = [
 
 function Popular() {
   const [quantities, setQuantities] = useState({});
+  const [cartItems, setCartItems] = useState([]);
 
   const increaseQty = (id) => {
     setQuantities((prev) => ({
@@ -52,9 +51,29 @@ function Popular() {
     }));
   };
 
+  const addToCart = (product) => {
+    const quantity = quantities[product.id] || 1;
+
+    // Проверка на наличие уже в корзине
+    setCartItems((prevCart) => {
+      const existing = prevCart.find((item) => item.id === product.id);
+
+      if (existing) {
+        return prevCart.map((item) =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + quantity }
+            : item
+        );
+      } else {
+        return [...prevCart, { ...product, quantity }];
+      }
+    });
+
+    console.log("Текущая корзина:", cartItems);
+  };
+
   return (
     <div className="container">
-      <img className="bg container" src={bg} alt="" />
       <h1>Популярные товары</h1>
 
       <div className="popular">
@@ -66,12 +85,11 @@ function Popular() {
             </div>
 
             <img src={popular} alt={product.title} className="product-image" />
-
             <h3 className="product-title">{product.title}</h3>
 
             <div className="price-info">
               <p>Розница: <b>{product.price} ₽</b></p>
-              <p>Оптом (от 5 штук): <b>{product.wholesalePrice} ₽</b></p>
+              <p>Оптом (от 5 шт): <b>{product.wholesalePrice} ₽</b></p>
               <p className="stock">
                 В наличии:
                 <span className={product.stock === "Нет в наличии" ? "out-of-stock" : "in-stock"}>
@@ -84,7 +102,13 @@ function Popular() {
               <button className="quantity-btn" onClick={() => decreaseQty(product.id)}>-</button>
               <span className="quantity">{quantities[product.id] || 0}</span>
               <button className="quantity-btn" onClick={() => increaseQty(product.id)}>+</button>
-              <button className="add-to-cart">В корзину</button>
+              <button
+                className="add-to-cart"
+                onClick={() => addToCart(product)}
+                disabled={product.stock === "Нет в наличии"}
+              >
+                В корзину
+              </button>
             </div>
           </div>
         ))}

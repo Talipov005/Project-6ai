@@ -14,31 +14,26 @@ function Footer() {
         <div className="footer-top">
           <div className="logo">
             <h2>NO DOORS TECHNOLOGY</h2>
-            <img src={logofoot} alt="" />
+            <img src={logofoot} alt="Логотип" />
           </div>
+
           <div className="footer-links">
             <h3>НАВИГАЦИЯ</h3>
             <ul>
-              <Link to="/komponi">
-              <li><a href="#">О компании</a></li>
-              </Link>
-              <Link to="/dostavka">
-              <li><a href="#">Доставка и оплата</a></li>
-              </Link>
-              <Link to="/garant">
-              <li><a href="#">Гарантия</a></li>
-              </Link>
-              <Link to="/kontact">
-              <li><a href="#">Контакты</a></li>
-              </Link>
+              <li><Link to="/komponi">О компании</Link></li>
+              <li><Link to="/dostavka">Доставка и оплата</Link></li>
+              <li><Link to="/garant">Гарантия</Link></li>
+              <li><Link to="/kontact">Контакты</Link></li>
             </ul>
           </div>
+
           <div className="footer-contacts">
             <h3>КОНТАКТЫ</h3>
             <p>📞 +7 (965) 237-44-49</p>
-            <p>🔗 vk.com/"long_line"</p>
+            <p>🔗 <a href="https://vk.com/long_line" target="_blank" rel="noopener noreferrer">vk.com/long_line</a></p>
             <p>📧 @long_nickname</p>
           </div>
+
           <div className="footer-payment">
             <h3>СПОСОБЫ ОПЛАТЫ</h3>
             <div className="payment-icons">
@@ -47,9 +42,10 @@ function Footer() {
               <img src={mirlogoo} alt="МИР" />
             </div>
           </div>
+
           <div className="footer-dev">
             <h3>РАЗРАБОТКА САЙТА</h3>
-            <img src={bumerang} alt="" />
+            <img src={bumerang} alt="Логотип разработчика" />
             <a href="#">Политика конфиденциальности</a>
             <p>No Doors Technology © 2020</p>
           </div>
