@@ -41,7 +41,6 @@ const products = [
 function Popular() {
   return (
     <div className="container">
-      <img className="bg container" src={bg} alt="" />
 <h1>Популярные товары</h1>
    
     <div className="popular ">
