@@ -7,6 +7,8 @@ import Komponi from "./pages/Komponi";
 import Kontact from "./pages/Kontact";
 import Madel from "./pages/Madel";
 import Categories from "./pages/Categories";
+import Login from "./pages/Login";
+import SigIn from "./pages/SigIn";
 
 export const myRouter = createBrowserRouter([
   {
@@ -34,12 +36,20 @@ export const myRouter = createBrowserRouter([
         element: <Kontact />,
       },
       {
-        path: "model/:brand",  // теперь будет передаваться бренд, а не id
+        path: "model/:brand",  
         element: <Madel />,
       },
       {
-        path: "categories/:model",  // теперь будет передаваться бренд, а не id
+        path: "categories/:model", 
         element: <Categories />,
+      },
+      {
+        path: "login", 
+        element: <Login/>,
+      },
+      {
+        path: "sigin", 
+        element: <SigIn/>,
       }
       
     ],

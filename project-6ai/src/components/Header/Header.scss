@@ -4,10 +4,14 @@
     justify-content: space-between;
     padding: 10px;
     height: 36px;
+    // border: 2px solid saddlebrown;
 
     .top-container {
         display: flex;
         justify-content: space-between;
+        // border: 2px solid saddlebrown;
+        
+
     }
 
     .top-header-left {
@@ -188,9 +192,9 @@
 }
 
 .selects select {
-    width: 80px;  
-    border: none;
-    background-color: transparent; 
+    width: 80px;  // Фиксированная ширина
+    border: none; // Убираем границу
+    background-color: transparent; // Прозрачный фон
     font-size: 14px;
     cursor: pointer;
     outline: none;

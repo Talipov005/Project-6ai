@@ -35,7 +35,9 @@ function Categories() {
     navigate(`/products/${categoryId}`)
   }
 
-  if (loading) return 
+
+  if (loading) return <p>Загрузка...</p>
+
   if (error) return <p>{error}</p>
   if (categories.length === 0) return 
 

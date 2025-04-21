@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
+
 import './Products.scss'
 
 function Products({ addToCart }) {
@@ -27,17 +28,28 @@ function Products({ addToCart }) {
   if (error) return <p>{error}</p>
   if (products.length === 0) return <p>Товары не найдены для данной категории</p>
 
+
   return (
     <div className="products container">
       <h1>Товары в категории</h1>
       <div className="products-list">
         {products.map(product => (
-          <ProductCard key={product.id} product={product} addToCart={addToCart} />
+          <div key={product.id} className="product-card">
+            <img src={product.image} alt={product.name} />
+            <h2>{product.name}</h2>
+            <p className="description">{product.description}</p>
+            <p className="price">{product.price}</p>
+            <button className="add-to-cart" onClick={() => addToCart(product)}>
+              Добавить в корзину
+            </button>
+          </div>
+
         ))}
       </div>
     </div>
   )
 }
+
 
 function ProductCard({ product, addToCart }) {
   const [quantity, setQuantity] = useState(1)
@@ -90,5 +102,6 @@ function ProductCard({ product, addToCart }) {
     </div>
   )
 }
+
 
 export default Products

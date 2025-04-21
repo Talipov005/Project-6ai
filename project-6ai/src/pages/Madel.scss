@@ -1,86 +1,94 @@
 .madel {
-    padding: 50px 0;
-  
-    h1 {
-      text-align: center;
-      margin-bottom: 20px;
-      font-size: 2rem;
-      color: #333;
+  padding: 50px 0;
+
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: #333;
+  }
+
+  .phones {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .phone-card {
+    flex: 0 0 23%;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    cursor: pointer;
+    perspective: 800px;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
     }
-  
-    .phones {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between; 
-      gap: 20px; 
-    }
-  
-    .phone-card {
-      flex: 0 0 23%; 
-      box-sizing: border-box;
-      border: 1px solid #ddd;
-      padding: 15px;
+
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
       border-radius: 8px;
-      background-color: #fff;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-      cursor: pointer;
-  
-      &:hover {
-        transform: translateY(-5px); 
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); 
-      }
-  
-      img {
-        width: 100%;
-        height: auto;
-        object-fit: cover;
-        border-radius: 8px;
-        margin-bottom: 15px;
-      }
-  
-      h2 {
-        font-size: 1.2rem;
-        color: #333;
-        margin-bottom: 10px;
-        transition: color 0.3s ease;
-      }
-  
-      p {
-        color: #777;
-        font-size: 0.9rem;
-        transition: color 0.3s ease; 
-      }
-  
- 
-      &:hover h2, &:hover p {
-        color: lawngreen; 
-      }
+      margin-bottom: 15px;
+      transition: transform 2s ease;  // Жай айлануу үчүн убакытты 2 секундга узарттык
+      transform-style: preserve-3d;
+    }
+
+    // Hover учурунда сүрөт 180 градуска жай айланат
+    &:hover img {
+      transform: rotateY(180deg);  // 180° айлануусун кошобуз
+    }
+
+    h2 {
+      font-size: 1.2rem;
+      color: #333;
+      margin-bottom: 10px;
+      transition: color 0.3s ease;
+    }
+
+    p {
+      color: #777;
+      font-size: 0.9rem;
+      transition: color 0.3s ease;
+    }
+
+    &:hover h2,
+    &:hover p {
+      color: lawngreen;
     }
   }
-  
-  
-  @media (max-width: 1024px) {
-    .madel {
-      .phones {
-        gap: 15px;
-      }
-  
-      .phone-card {
-        flex: 0 0 48%; 
-      }
+}
+
+// Tablets
+@media (max-width: 1024px) {
+  .madel {
+    .phones {
+      gap: 15px;
+    }
+
+    .phone-card {
+      flex: 0 0 48%;
     }
   }
-  
-  @media (max-width: 768px) {
-    .madel {
-      .phones {
-        gap: 10px;
-      }
-  
-      .phone-card {
-        flex: 0 0 100%; 
-      }
+}
+
+// Phones
+@media (max-width: 768px) {
+  .madel {
+    .phones {
+      gap: 10px;
+    }
+
+    .phone-card {
+      flex: 0 0 100%;
     }
   }
-  
+}

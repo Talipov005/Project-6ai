@@ -5,6 +5,7 @@ import visaa from "../../assets/svg/visa.svg"
 import massaa from "../../assets/svg/mass.svg"
 import mirlogoo from "../../assets/svg/mirlogo.svg"
 import bumerang from "../../assets/svg/bumerang.svg"
+import { Link } from 'react-router-dom';
 
 function Footer() {
   return (
@@ -18,10 +19,18 @@ function Footer() {
           <div className="footer-links">
             <h3>НАВИГАЦИЯ</h3>
             <ul>
+              <Link to="/komponi">
               <li><a href="#">О компании</a></li>
+              </Link>
+              <Link to="/dostavka">
               <li><a href="#">Доставка и оплата</a></li>
+              </Link>
+              <Link to="/garant">
               <li><a href="#">Гарантия</a></li>
+              </Link>
+              <Link to="/kontact">
               <li><a href="#">Контакты</a></li>
+              </Link>
             </ul>
           </div>
           <div className="footer-contacts">

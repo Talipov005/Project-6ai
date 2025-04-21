@@ -13,12 +13,18 @@
     "@npmcli/redact": "^3.1.1",
     "@reduxjs/toolkit": "^2.6.1",
     "axios": "^1.8.4",
-    "framer-motion": "^12.7.3",
+
+    "firebase": "^11.6.0",
+    "framer-motion": "^12.7.4",
+
     "lucide-react": "^0.487.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.4.1",
-    "sass": "^1.86.0"
+    "react-toastify": "^11.0.5",
+    "react-tsparticles": "^2.12.2",
+    "sass": "^1.86.0",
+    "tsparticles": "^3.8.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
