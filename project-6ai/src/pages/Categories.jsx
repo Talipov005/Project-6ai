@@ -35,9 +35,11 @@ function Categories() {
     navigate(`/products/${categoryId}`)
   }
 
+
   if (loading) return <p>Загрузка...</p>
+
   if (error) return <p>{error}</p>
-  if (categories.length === 0) return <p>Категории не найдены</p>
+  if (categories.length === 0) return 
 
   return (
     <div className="category container">

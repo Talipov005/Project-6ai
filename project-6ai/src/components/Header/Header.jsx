@@ -7,6 +7,7 @@ import search from "../../assets/svg/search.svg";
 import heart from "../../assets/svg/heart.svg";
 import cart from "../../assets/svg/cart.svg";
 import { Link, useNavigate } from "react-router-dom";
+
 import Modal from "../Modal";
 import './CartModal.scss'
 
@@ -15,6 +16,7 @@ function Header({ cartItems, setCartItems })  {
   const [isCartOpen, setCartOpen] = useState(false)
   const [isFavOpen, setFavOpen] = useState(false)
   const [drops, setDrops] = useState([]);
+  
 
   const navigate = useNavigate();
 
@@ -46,6 +48,7 @@ function Header({ cartItems, setCartItems })  {
   return (
     <header className="header container">
       <div className="drops">{drops}</div>
+
 
       <div className="all-header wrapper">
         <div className="top-header">
@@ -89,12 +92,45 @@ function Header({ cartItems, setCartItems })  {
               <img src={heart} alt="" />
               <p>Избранное</p>
             </div>
-            <div className="icon cor" onClick={() => setShowCart(true)}>
-              <img src={cart} alt="Корзина" />
-              <p>Моя корзина</p>
-              <div className="corz">{cartItems?.length || 0}</div>
-            </div>
+
+          <div className="icon cor" onClick={() => setShowCart(true)}>
+          <img src={cart} alt="Корзина" />
+          <p>Моя корзина</p>
+          <div className="corz">{cartItems?.length || 0}</div>
           </div>
+      </div>
+
+      {showCart && (
+  <div className="modal">
+    <div className="modal-content">
+      <button onClick={() => setShowCart(false)}>Закрыть</button>
+      <h2>Корзина</h2>
+      {cartItems.length === 0 ? (
+        <p>Корзина пуста</p>
+      ) : (
+        cartItems.map((item, i) => (
+          <div key={i} className="cart-item">
+            <img src={item.image} alt={item.name} />
+            <p>{item.name}</p>
+            <p>{item.price}</p>
+
+          </div>
+        ))
+      )}
+    </div>
+  </div>
+)}
+
+
+      {/* Модальное окно корзины */}
+      <Modal isOpen={isCartOpen} onClose={() => setCartOpen(false)} title="Корзина">
+        <p>Здесь будут товары из корзины</p>
+      </Modal>
+
+      {/* Модальное окно избранного */}
+      <Modal isOpen={isFavOpen} onClose={() => setFavOpen(false)} title="Избранное">
+        <p>Здесь будут избранные товары</p>
+      </Modal>
         </div>
 
         {showCart && (

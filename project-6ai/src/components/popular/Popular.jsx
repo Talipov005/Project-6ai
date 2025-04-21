@@ -3,6 +3,7 @@ import "./Popular.scss";
 import popular from "../../assets/svg/popular.svg";
 import bg from "../../assets/img/bg.png";
 
+
 const products = [
   {
     id: 1,

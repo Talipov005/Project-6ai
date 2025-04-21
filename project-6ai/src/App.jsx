@@ -1,4 +1,6 @@
+
 import React, { useState } from 'react'
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 // Импорты страниц
@@ -16,6 +18,9 @@ import SigIn from './pages/SigIn'
 // Импорты компонентов
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
+import Products from './pages/Products'
+
+
 
 function App() {
   const [cartItems, setCartItems] = useState([])
@@ -24,12 +29,14 @@ function App() {
     setCartItems((prev) => [...prev, product])
   }
 
+
   return (
     <Router>
       <Header 
         cartItems={cartItems} 
         setCartItems={setCartItems} 
       />
+
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -42,6 +49,7 @@ function App() {
         <Route path="/kontact" element={<Kontact />} />
         <Route path="/login" element={<Login />} />
         <Route path="/sigin" element={<SigIn/>} />
+
       </Routes>
 
       <Footer />
