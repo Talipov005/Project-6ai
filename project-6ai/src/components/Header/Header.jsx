@@ -6,10 +6,17 @@ import logo from "../../assets/svg/logo.svg";
 import search from "../../assets/svg/search.svg";
 import heart from "../../assets/svg/heart.svg";
 import cart from "../../assets/svg/cart.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Modal from "../Modal";
+import './CartModal.scss'
 
-function Header() {
+function Header({ cartItems, setCartItems })  {
+  const [showCart, setShowCart] = useState(false)
+  const [isCartOpen, setCartOpen] = useState(false)
+  const [isFavOpen, setFavOpen] = useState(false)
   const [drops, setDrops] = useState([]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const newDrops = [];
@@ -29,30 +36,29 @@ function Header() {
     setDrops(newDrops);
   }, []);
 
+  const handleSelect = (e) => {
+    const value = e.target.value;
+    if (value) {
+      navigate(`/model/${value}`);
+    }
+  };
+
   return (
-    <header className="header  container">
-    <div className="drops">{drops}</div>
+    <header className="header container">
+      <div className="drops">{drops}</div>
 
       <div className="all-header wrapper">
-        <div className="top-header  ">
+        <div className="top-header">
           <div className="top-container container">
-            <div className="top-header-left ">
+            <div className="top-header-left">
               <ul>
-                <Link to="/komponi">
-                  <li>О компании</li>
-                </Link>
-                <Link to="/dostavka">
-                  <li>Доставка и оплата</li>
-                </Link>
-                <Link to="/garant">
-                  <li>Гарантии</li>
-                </Link>
-                <Link to="/kontact">
-                  <li>Контакты</li>
-                </Link>
+                <Link to="/komponi"><li>О компании</li></Link>
+                <Link to="/dostavka"><li>Доставка и оплата</li></Link>
+                <Link to="/garant"><li>Гарантии</li></Link>
+                <Link to="/kontact"><li>Контакты</li></Link>
               </ul>
             </div>
-            <div className="top-header-right ">
+            <div className="top-header-right">
               <div className="contact">
                 <img src={call} alt="call" />
                 <p>+7 (965) 237-44-49</p>
@@ -62,15 +68,13 @@ function Header() {
                 <option value="KG">Кыргызча</option>
                 <option value="En">English</option>
               </select>
-              <p>Личный кабинет</p>
+              <Link to="/login"><p>Личный кабинет</p></Link>
             </div>
           </div>
         </div>
 
         <div className="center-header container">
-          <Link to="">
-            <img src={logo} alt="Логотип" className="logo" />
-          </Link>
+          <Link to="/"><img src={logo} alt="Логотип" className="logo" /></Link>
           <div className="center-right">
             <div className="search">
               <input placeholder="Введите поисковой запрос.." type="text" />
@@ -82,56 +86,82 @@ function Header() {
           </div>
           <div className="cart-heart">
             <div className="icon">
-              <img src={heart} alt="Избранное" />
+              <img src={heart} alt="" />
               <p>Избранное</p>
             </div>
-            <div className="icon">
+            <div className="icon cor" onClick={() => setShowCart(true)}>
               <img src={cart} alt="Корзина" />
               <p>Моя корзина</p>
+              <div className="corz">{cartItems?.length || 0}</div>
             </div>
           </div>
         </div>
 
+        {showCart && (
+          <div className="modal">
+            <div className="modal-content">
+              <button onClick={() => setShowCart(false)}>Закрыть</button>
+              <h2>Корзина</h2>
+              {cartItems.length === 0 ? (
+                <p>Корзина пуста</p>
+              ) : (
+                cartItems.map((item, i) => (
+                  <div key={i} className="cart-item">
+                    <img src={item.image} alt={item.name} />
+                    <p>{item.name}</p>
+                    <p>{item.price}</p>
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Модалки */}
+        <Modal isOpen={isCartOpen} onClose={() => setCartOpen(false)} title="Корзина">
+          <p>Здесь будут товары из корзины</p>
+        </Modal>
+
+        <Modal isOpen={isFavOpen} onClose={() => setFavOpen(false)} title="Избранное">
+          <p>Здесь будут избранные товары</p>
+        </Modal>
+
         <div className="bottom-header container">
           <div className="selects">
-            <select>
-              <option value="" disabled selected>
-                Apple
-              </option>
-              <option value="iphone-xs">iPhone XS</option>
-              <option value="iphone-11-pro">iPhone 11 Pro</option>
+            <select onChange={handleSelect} defaultValue="">
+              <option value="" disabled>Apple</option>
+              <option value="iphone 14 Pro">iPhone 14 Pro</option>
+              <option value="iphone-13-pro">iPhone 13 Pro</option>
               <option value="iphone-12">iPhone 12</option>
               <option value="iphone-13">iPhone 13</option>
               <option value="iphone-14">iPhone 14</option>
             </select>
-            <select>
-              <option value="" disabled selected>
-                Huawei
-              </option>
-              <option value="huawei-p30">Huawei P30</option>
-              <option value="huawei-p40">Huawei P40</option>
-              <option value="huawei-mate-30">Huawei Mate 30</option>
-              <option value="huawei-mate-40">Huawei Mate 40</option>
+
+            <select onChange={handleSelect} defaultValue="">
+              <option value="" disabled>Huawei</option>
+              <option value="huawei-p60-pro">Huawei P60 Pro</option>
+              <option value="huawei-mate-50-pro">Huawei Mate 50 Pro</option>
+              <option value="huawei-nova-11">Huawei Nova 11</option>
+              <option value="huawei-p50">Huawei P50</option>
             </select>
-            <select>
-              <option value="" disabled selected>
-                Xiaomi
-              </option>
-              <option value="xiaomi-mi-11">Xiaomi Mi 11</option>
-              <option value="xiaomi-redmi-note-10">Xiaomi Redmi Note 10</option>
-              <option value="xiaomi-poco-x3">Xiaomi Poco X3</option>
-              <option value="xiaomi-mi-10">Xiaomi Mi 10</option>
+
+            <select onChange={handleSelect} defaultValue="">
+              <option value="" disabled>Xiaomi</option>
+              <option value="xiaomi-14-ultra">Xiaomi 14 Ultra</option>
+              <option value="xiaomi-14">Xiaomi 14</option>
+              <option value="xiaomi-13t-pro">Xiaomi 13T Pro</option>
+              <option value="xiaomi-13t">Xiaomi 13T</option>
             </select>
-            <select>
-              <option value="" disabled selected>
-                Samsung
-              </option>
-              <option value="galaxy-s20">Samsung Galaxy S20</option>
-              <option value="galaxy-s21">Samsung Galaxy S21</option>
-              <option value="galaxy-note-20">Samsung Galaxy Note 20</option>
-              <option value="galaxy-z-fold">Samsung Galaxy Z Fold</option>
+
+            <select onChange={handleSelect} defaultValue="">
+              <option value="" disabled>Samsung</option>
+              <option value="samsung-a05">Samsung Galaxy A05</option>
+              <option value="samsung-a15">Samsung Galaxy A15</option>
+              <option value="samsung-a25">Samsung Galaxy A25 5G</option>
+              <option value="samsung-a35">Samsung Galaxy A35 5G</option>
             </select>
           </div>
+
           <div className="uls">
             <ul>
               <li>Питание и кабели</li>
