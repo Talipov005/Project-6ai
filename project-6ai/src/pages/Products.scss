@@ -1,5 +1,4 @@
 .products.container {
-
   padding: 20px;
 }
 
@@ -131,23 +130,3 @@
 .add-to-cart:hover {
   background-color: #2d7c2e;
 }
-.favorite-button {
-  position: absolute;
-  top: 0px;
-  right: 10px;
-  background: none;
-  border: none;
-  font-size: 35px; // размер побольше
-  cursor: pointer;
-  transition: transform 0.2s ease, color 0.2s ease;
-  color: #3b8240; // начальный цвет
-
-  &:hover {
-    transform: scale(1.2);
-  }
-
-  &.active {
-    color: #52c41a; // зелёный цвет, когда в избранном
-  }
-}
-

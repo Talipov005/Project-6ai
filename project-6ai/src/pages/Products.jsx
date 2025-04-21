@@ -68,12 +68,12 @@ function ProductCard({ product, addToCart }) {
 
   return (
     <div className="product-card">
-      {/* Метка статуса */}
+    
       {product.status && (
         <span className={`product-label ${product.status}`}>{product.status}</span>
       )}
 
-      {/* Кнопка избранного */}
+      
         <button className="favorite-button" onClick={toggleFavorite}>
           {isFavorite ? '♥' : '♡'}
         </button>
