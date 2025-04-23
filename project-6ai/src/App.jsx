@@ -13,6 +13,8 @@ import Login from './pages/Login';
 import SigIn from './pages/SigIn';
 import Products from './pages/Products';
 import Corzina from './pages/Corzina';
+import Proses from './pages/Proses';
+import Mastera from './pages/Mastera';
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -35,6 +37,8 @@ function App() {
         { path: 'categories/:phoneId', element: <Categories /> },
         { path: 'login', element: <Login /> },
         { path: 'sigin', element: <SigIn /> },
+        { path: 'proses', element: <Proses /> },
+        { path: 'mastera', element: <Mastera /> },
         { path: 'products/:id', element: <Products addToCart={handleAddToCart} /> },
         { path: 'corzina', element: <Corzina cartItems={cartItems} /> }
       ],

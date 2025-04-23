@@ -1,0 +1,222 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .wrapper {
+    width: 100%;
+    overflow-x: hidden;
+    font-family: sans-serif;
+  }
+  
+  /* Бегущая строка */
+  .marquee-banner {
+    background: #1d3557;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 10px 0;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative;
+  
+    p {
+      display: inline-block;
+      animation: scroll-left 20s linear infinite;
+    }
+  }
+  
+  @keyframes scroll-left {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  
+  .intro-banner {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    text-align: center;
+    padding: 60px 20px 40px;
+    background: linear-gradient(135deg, #e0f7fa, #ffffff);
+    animation: fadeInBanner 1.5s ease-in-out;
+  
+    .banner-title {
+      font-size: 2.5rem;
+      color: #1d3557;
+      margin-bottom: 10px;
+    }
+  
+    .banner-subtitle {
+      font-size: 1.3rem;
+      margin-bottom: 30px;
+      color: #333;
+    }
+  
+    .info-cards {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+  
+      .info-card {
+        background: white;
+        padding: 20px;
+        border-radius: 16px;
+        width: 250px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+        animation: cardFadeIn 1s ease forwards;
+  
+        &:hover {
+          transform: translateY(-8px);
+        }
+  
+        .icon {
+          font-size: 2rem;
+          color: #457b9d;
+          margin-bottom: 10px;
+        }
+  
+        h4 {
+          font-size: 1.2rem;
+          margin-bottom: 8px;
+        }
+  
+        p {
+          font-size: 1rem;
+          color: #555;
+        }
+      }
+    }
+  }
+  
+  .video-container {
+    margin-bottom: 50px;
+    position: relative;
+    width: 100%;
+    height: 600px;
+  }
+  
+  .video-player {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
+  }
+  
+  .content-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 20px 30px;
+    border-radius: 8px;
+    animation: fadeIn 2s ease-in-out forwards;
+    opacity: 0;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .description {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    max-width: 700px;
+  }
+  
+  /* Почему выбирают нас */
+  .why-choose {
+    padding: 60px 20px;
+    text-align: center;
+    background: #f7f9fb;
+  
+    h2 {
+      font-size: 2.2rem;
+      margin-bottom: 40px;
+      color: #1d3557;
+    }
+  
+    .reasons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+  
+      .reason-card {
+        background: #fff;
+        border-radius: 16px;
+        padding: 25px 20px;
+        width: 250px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+  
+        &:hover {
+          transform: translateY(-5px);
+        }
+  
+        span {
+          font-size: 2rem;
+          display: block;
+          margin-bottom: 10px;
+        }
+  
+        h4 {
+          font-size: 1.2rem;
+          margin-bottom: 10px;
+          color: #333;
+        }
+  
+        p {
+          font-size: 1rem;
+          color: #666;
+        }
+      }
+    }
+  }
+  
+  /* Анимации */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translate(-50%, -60%);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+  }
+  
+  @keyframes fadeInBanner {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes cardFadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
