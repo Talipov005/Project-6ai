@@ -145,10 +145,14 @@ function Header() {
         <div className="bottom-header container">
           <div className="uls">
             <ul>
-              <li>Питание и кабели</li>
-              <li>Powerbank</li>
-              <li>Акции</li>
-              <li>Прайс-лист</li>
+              <Link to="mastera">
+              <li>Наши мастера</li>
+              </Link>
+              <Link to="proses">
+              <li>Процесс ремонта</li>
+              </Link>
+              <li>Наши работы</li>
+              <li>Советы</li>
             </ul>
           </div>
         </div>
