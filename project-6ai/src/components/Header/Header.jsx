@@ -151,8 +151,12 @@ function Header() {
               <Link to="proses">
               <li>Процесс ремонта</li>
               </Link>
+              <Link to="rabota">
               <li>Наши работы</li>
+              </Link>
+              <Link to="sovet">
               <li>Советы</li>
+              </Link>
             </ul>
           </div>
         </div>

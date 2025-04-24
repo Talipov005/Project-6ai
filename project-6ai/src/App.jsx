@@ -15,6 +15,8 @@ import Products from './pages/Products';
 import Corzina from './pages/Corzina';
 import Proses from './pages/Proses';
 import Mastera from './pages/Mastera';
+import Rabota from './pages/Rabota';
+import Sovet from './pages/Sovet';
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -39,6 +41,8 @@ function App() {
         { path: 'sigin', element: <SigIn /> },
         { path: 'proses', element: <Proses /> },
         { path: 'mastera', element: <Mastera /> },
+        { path: 'rabota', element: <Rabota /> },
+        { path: 'sovet', element: <Sovet /> },
         { path: 'products/:id', element: <Products addToCart={handleAddToCart} /> },
         { path: 'corzina', element: <Corzina cartItems={cartItems} /> }
       ],
