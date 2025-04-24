@@ -1,90 +1,139 @@
 .masters-container {
-    padding: 40px;
-    background-color: #f9f9f9;
-    text-align: center;
-  
-    .welcome-section {
-      margin-bottom: 40px;
-  
-      .welcome-title {
-        font-size: 2.5rem;
-        margin-bottom: 10px;
-        color: #333;
-      }
-  
-      .welcome-description {
-        font-size: 1.2rem;
-        color: #555;
-      }
+  padding: 40px;
+  background-color: #f9f9f9;
+  text-align: center;
+
+  .welcome-section {
+    margin-bottom: 40px;
+
+    .welcome-title {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      color: #333;
     }
-  
-    .masters-list-section {
-      .section-title {
-        font-size: 2.5rem;
-        margin-bottom: 30px;
-        color: #333;
-      }
-  
-      .masters-list {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        flex-wrap: wrap;
-        margin-bottom: 40px;
-        animation: slideUp 1s ease-in-out;
-  
-        .master-card {
-          background-color: #fff;
-          border-radius: 10px;
-          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-          width: 270px;
-          padding: 20px;
-          text-align: center;
-          transition: transform 0.3s ease;
-          margin-bottom: 20px;
-  
-          &:hover {
-            transform: translateY(-10px);
+
+    .welcome-description {
+      font-size: 1.2rem;
+      color: #555;
+    }
+  }
+
+  .masters-list-section {
+    .section-title {
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      color: #333;
+    }
+
+    .masters-list {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+      animation: slideUp 1s ease-in-out;
+
+      .master-card {
+        background-color: #fff;
+        border-radius: 16px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        width: 270px;
+        padding: 20px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+        margin-bottom: 20px;
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: -50%;
+          left: -50%;
+          width: 200%;
+          height: 200%;
+          background: conic-gradient(from 0deg, gold, #ffcc00, gold, #ffcc00, gold);
+          animation: rotateBorder 6s linear infinite;
+          z-index: 0;
+          opacity: 0;
+          transition: opacity 0.4s;
+        }
+
+        &::after {
+          content: '';
+          position: absolute;
+          top: 2px;
+          left: 2px;
+          right: 2px;
+          bottom: 2px;
+          background: white;
+          border-radius: 14px;
+          z-index: 1;
+        }
+
+        &:hover {
+          transform: translateY(-12px);
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+
+          &::before {
+            opacity: 1;
           }
-  
-          .master-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 15px;
-          }
-  
-          .master-name {
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-bottom: 5px;
-            color: #333;
-          }
-  
-          .master-role {
-            font-size: 1rem;
-            color: #777;
-            margin-bottom: 10px;
-          }
-  
-          .master-description {
-            font-size: 0.9rem;
-            color: #555;
-          }
+        }
+
+        .master-image {
+          width: 100%;
+          height: 200px;
+          object-fit: cover;
+          border-radius: 8px;
+          margin-bottom: 15px;
+          position: relative;
+          z-index: 2;
+        }
+
+        .master-name {
+          font-size: 1.2rem;
+          font-weight: bold;
+          margin-bottom: 5px;
+          color: #333;
+          position: relative;
+          z-index: 2;
+        }
+
+        .master-role {
+          font-size: 1rem;
+          color: #777;
+          margin-bottom: 10px;
+          position: relative;
+          z-index: 2;
+        }
+
+        .master-description {
+          font-size: 0.9rem;
+          color: #555;
+          position: relative;
+          z-index: 2;
         }
       }
     }
   }
-  
-  @keyframes slideUp {
-    0% {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
+}
+
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rotateBorder {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
