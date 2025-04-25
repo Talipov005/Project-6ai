@@ -1,33 +1,44 @@
-// // router.js
-// import { createBrowserRouter } from 'react-router-dom';
-// import Layout from './components/Layout/Layout';
-// import Home from './pages/Home';
-// import Garant from './pages/Garant';
-// import Dostavka from './pages/Dostavka';
-// import Komponi from './pages/Komponi';
-// import Kontact from './pages/Kontact';
-// import Madel from './pages/Madel';
-// import Categories from './pages/Categories';
-// import Login from './pages/Login';
-// import SigIn from './pages/SigIn';
-// import Products from './pages/Products';
-// // import Corzina from './pages/Corzina';  // Импортируем компонент Corzina
+// src/router.jsx
+import { createBrowserRouter } from 'react-router-dom';
+import Layout from './components/Layout/Layout';
+import Home from './pages/Home';
+import Garant from './pages/Garant';
+import Dostavka from './pages/Dostavka';
+import Komponi from './pages/Komponi';
+import Kontact from './pages/Kontact';
+import Madel from './pages/Madel';
+import Categories from './pages/Categories';
+import Login from './pages/Login';
+import SigIn from './pages/SigIn';
+import Products from './pages/Products';
+import Corzina from './pages/Corzina';
+import Izbrannyi from './pages/Izbrannyi';
+import Proses from './pages/Proses';
+import Mastera from './pages/Mastera';
+import Rabota from './pages/Rabota';
+import Sovet from './pages/Sovet';
 
-// export const myRouter = createBrowserRouter([
-//   {
-//     path: '/',
-//     element: <Layout />,
-//     children: [
-//       { path: '/', element: <Home /> },
-//       { path: 'garant', element: <Garant /> },
-//       { path: 'dostavka', element: <Dostavka /> },
-//       { path: 'komponi', element: <Komponi /> },
-//       // { path: 'corzina', element: <Corzina cartItems={cartItems} /> },  // Передаем cartItems в Corzina
-//       { path: 'kontact', element: <Kontact /> },
-//       { path: 'model/:brand', element: <Madel /> },
-//       { path: 'categories/:phoneId', element: <Categories /> },
-//       { path: 'login', element: <Login /> },
-//       { path: 'sigin', element: <SigIn /> },
-//     ],
-//   },
-// ]);
+export const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Layout />,
+    children: [
+      { index: true, element: <Home /> },
+      { path: 'garant', element: <Garant /> },
+      { path: 'dostavka', element: <Dostavka /> },
+      { path: 'komponi', element: <Komponi /> },
+      { path: 'kontact', element: <Kontact /> },
+      { path: 'model/:brand', element: <Madel /> },
+      { path: 'categories/:phoneId', element: <Categories /> },
+      { path: 'login', element: <Login /> },
+      { path: 'sigin', element: <SigIn /> },
+      { path: 'proses', element: <Proses /> },
+      { path: 'mastera', element: <Mastera /> },
+      { path: 'rabota', element: <Rabota /> },
+      { path: 'sovet', element: <Sovet /> },
+      { path: 'products/:id', element: <Products /> },
+      { path: 'corzina', element: <Corzina /> },
+      { path: 'izbrannyi', element: <Izbrannyi /> },
+    ],
+  },
+]);
