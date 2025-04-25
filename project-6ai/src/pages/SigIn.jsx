@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import './Auth.scss'; // Use consolidated SCSS
+import "./SigIn.scss"; // Use consolidated SCSS
 import StarBackground from './StarBackground';
 import { Link, useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
