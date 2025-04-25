@@ -1,66 +1,40 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Prodact.scss';
+import { useFavorites } from '../../contexts/FavoritesContext';
+import { FaHeart, FaRegHeart } from 'react-icons/fa';
 
-function ProductCard({ product, addToCart }) {
-  const [quantity, setQuantity] = useState(1);
-  const [isFavorite, setIsFavorite] = useState(false);
-  const [added, setAdded] = useState(false); // Состояние для отслеживания добавления товара
+function ProductCard({ product, addToCart, addToFavorites }) {
+  const { favorites, removeFromFavorites } = useFavorites();
+  const isFavorite = favorites.some((item) => item.id === product.id);
 
-  const increase = () => setQuantity((q) => q + 1);
-  const decrease = () => setQuantity((q) => (q > 1 ? q - 1 : 1));
-
-  const handleAdd = () => {
-    if (!added) { // Проверка, был ли товар уже добавлен
-      addToCart({ ...product, quantity }); // Добавляем товар в корзину
-      setAdded(true); // Обновляем статус, что товар добавлен
-      setQuantity(1); // Сбрасываем количество после добавления
+  const handleFavoriteToggle = () => {
+    if (isFavorite) {
+      removeFromFavorites(product.id);
+    } else {
+      addToFavorites(product);
     }
-  };
-
-  const toggleFavorite = () => {
-    setIsFavorite((prev) => !prev); // Переключаем состояние избранного
   };
 
   return (
     <div className="product-card">
-      {product.status && <span className={`product-label ${product.status}`}>{product.status}</span>}
-
+      {product.label && (
+        <span className={`product-label ${product.label.toLowerCase()}`}>
+          {product.label}
+        </span>
+      )}
       <button
-        className={`favorite-button ${isFavorite ? 'favorite' : ''}`}
-        onClick={toggleFavorite}
+        className={`favorite-button ${isFavorite ? 'active' : ''}`}
+        onClick={handleFavoriteToggle}
       >
-        ♥
+        {isFavorite ? <FaHeart /> : <FaRegHeart />}
       </button>
-
       <img src={product.image} alt={product.name} />
       <h2>{product.name}</h2>
-      <p
-        className={`description ${
-          product.description.toLowerCase().includes('есть в наличии')
-            ? 'in-stock'
-            : product.description.toLowerCase().includes('нет в наличии')
-            ? 'out-of-stock'
-            : ''
-        }`}
-      >
-        {product.description}
-      </p>
-      <p className="price">{product.price}</p>
-
+      <p className="description">{product.description}</p>
+      <p className="price">{product.price} ₽</p>
       <div className="action-row">
-        <div className="quantity-control horizontal">
-          <button onClick={decrease}>−</button>
-          <input
-            type="number"
-            value={quantity}
-            onChange={(e) => setQuantity(Math.max(1, +e.target.value))} // Не даем ввести количество меньше 1
-            min="1"
-          />
-          <button onClick={increase}>+</button>
-        </div>
-
-        <button className="add-to-cart" onClick={handleAdd} disabled={added}>
-          {added ? 'Добавлено' : 'Добавить в корзину'}
+        <button className="add-to-cart" onClick={() => addToCart(product)}>
+          Добавить в корзину
         </button>
       </div>
     </div>
