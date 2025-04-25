@@ -1,18 +1,93 @@
 .banner {
+  width: 1300px;
+  max-width: 100%;
+  margin: 0 auto;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+
+  .banner-slide {
+    height: 500px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
     display: flex;
-    justify-content: center;
     align-items: center;
-    margin-top: 40px;
+    justify-content: center;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+
+    .banner-overlay {
+      background: rgba(0, 0, 0, 0.5);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s ease;
+
+      &:hover {
+        background: rgba(0, 0, 0, 0.7);
+      }
+
+      .banner-content {
+        color: #fff;
+        text-align: left;
+        padding-left: 40px;
+        max-width: 600px;
+        transform: translateY(30px);
+        opacity: 0;
+        animation: slideIn 1s forwards;
+
+        h1 {
+          font-size: 50px;
+          font-weight: 700;
+          margin-bottom: 20px;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
+        }
+
+        p {
+          font-size: 20px;
+          margin-bottom: 20px;
+          line-height: 1.6;
+        }
+
+        .banner-btn {
+          background-color: #fff;
+          color: #000;
+          padding: 14px 30px;
+          border: none;
+          border-radius: 30px;
+          font-weight: 600;
+          font-size: 16px;
+          transition: background 0.3s ease, transform 0.3s ease;
+          cursor: pointer;
+
+          &:hover {
+            background-color: #ddd;
+            transform: translateY(-5px);
+          }
+        }
+      }
+    }
   }
-  
-  .carousel {
-    width: 1300px; /* Ограничение ширины */
-    max-width: 100%; /* Адаптивность */
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateY(30px);
+    opacity: 0;
   }
-  
-  .carousel img {
-    width: 1300px; /* Фиксированная ширина */
-    height: auto; /* Сохранение пропорций */
-    object-fit: cover; /* Подгонка изображения */
+  100% {
+    transform: translateY(0);
+    opacity: 1;
   }
-  
+}
