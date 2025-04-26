@@ -80,7 +80,6 @@ function Corzina() {
             })}
 
             <div className="cart-footer">
-              <button className="select-all">Выбрать всё</button>
               <button className="clear-cart" onClick={clearCart}>
                 Очистить корзину
               </button>
