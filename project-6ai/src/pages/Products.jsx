@@ -27,7 +27,7 @@ function Products() {
             image: item.image,
             description: item.description || 'Есть в наличии',
             quantity: item.quantity || 1,
-            label: item.label || '', // Поддержка меток
+            label: item.label || '', 
           }));
         setProducts(filteredProducts);
         setLoading(false);
