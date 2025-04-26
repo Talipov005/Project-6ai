@@ -3,6 +3,7 @@ import API from '../axios/apiClient';
 import './Home.scss';
 import { Link } from 'react-router-dom';
 import Banner from '../components/banner/Banner';
+import Otzyv from '../components/otzyv/Otzyv';
 import Popular from '../components/popular/Popular';
 import Card from '../components/besh-card/card';
 import Text from '../components/text/Text';
@@ -65,6 +66,7 @@ function Home() {
         <Popular />
         <Card />
         <Text />
+        <Otzyv/>
         <Foto />
       </div>
     </AnimatedLayout>

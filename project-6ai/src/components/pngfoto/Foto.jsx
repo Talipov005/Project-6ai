@@ -1,11 +1,15 @@
 import React from 'react'
 import "./Foto.scss"
-import Foto2 from "../../assets/img/Блок _Фото и видео_.png"
+import video2 from "../../../public/IMG_0468.MP4"
 
 function Foto() {
   return (
-    <div className='fotka container'>
-      <img src={Foto2} alt="" />
+    <div className='video container'>
+      <video src={video2} 
+      autoPlay
+      muted
+      loop
+      playsInline></video>
     </div>
   )
 }
