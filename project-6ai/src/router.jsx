@@ -17,6 +17,7 @@ import Mastera from './pages/Mastera';
 import Rabota from './pages/Rabota';
 import Sovet from './pages/Sovet';
 import Detail from './pages/Detail'; // Импорт компонента Detail
+import SearchResults from './pages/SearchResults'; // Импорт компонента SearchResults
 
 export const router = createBrowserRouter([
   {
@@ -40,6 +41,7 @@ export const router = createBrowserRouter([
       { path: 'product/:id', element: <Detail /> }, // Новый маршрут для Detail
       { path: 'corzina', element: <Corzina /> },
       { path: 'izbrannyi', element: <Izbrannyi /> },
+      { path: 'search', element: <SearchResults /> }, // Новый маршрут для SearchResults
     ],
   },
 ]);
