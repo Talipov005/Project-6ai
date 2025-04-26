@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Izbrannyi.scss';
 import { useFavorites } from '../contexts/FavoritesContext';
 
@@ -15,7 +16,9 @@ function Izbrannyi() {
           <div className="favorites-grid">
             {favorites.map((item, index) => (
               <div key={index} className="favorite-item">
-                <img src={item.image} alt={item.name} />
+                <Link to={`/product/${item.id}`}>
+                  <img src={item.image} alt={item.name} />
+                </Link>
                 <div className="info">
                   <h3>{item.name}</h3>
                   <p>{item.price} ₽</p>

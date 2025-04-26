@@ -1,4 +1,3 @@
-// src/router.jsx
 import { createBrowserRouter } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
 import Home from './pages/Home';
@@ -17,6 +16,7 @@ import Proses from './pages/Proses';
 import Mastera from './pages/Mastera';
 import Rabota from './pages/Rabota';
 import Sovet from './pages/Sovet';
+import Detail from './pages/Detail'; // Импорт компонента Detail
 
 export const router = createBrowserRouter([
   {
@@ -37,6 +37,7 @@ export const router = createBrowserRouter([
       { path: 'rabota', element: <Rabota /> },
       { path: 'sovet', element: <Sovet /> },
       { path: 'products/:id', element: <Products /> },
+      { path: 'product/:id', element: <Detail /> }, // Новый маршрут для Detail
       { path: 'corzina', element: <Corzina /> },
       { path: 'izbrannyi', element: <Izbrannyi /> },
     ],

@@ -1,17 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Prodact.scss';
 import { useFavorites } from '../../contexts/FavoritesContext';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
 
-function ProductCard({ product, addToCart, addToFavorites }) {
-  const { favorites, removeFromFavorites } = useFavorites();
+function ProductCard({ product, addToCart }) {
+  const { favorites, addToFavorites, removeFromFavorites } = useFavorites();
+  const [quantity, setQuantity] = useState(1);
+
   const isFavorite = favorites.some((item) => item.id === product.id);
 
   const handleFavoriteToggle = () => {
-    if (isFavorite) {
-      removeFromFavorites(product.id);
-    } else {
-      addToFavorites(product);
+    isFavorite ? removeFromFavorites(product.id) : addToFavorites(product);
+  };
+
+  const handleQuantityChange = (newQuantity) => {
+    if (newQuantity >= 1) {
+      setQuantity(newQuantity);
+    }
+  };
+
+  const handleAddToCart = () => {
+    if (quantity > 0) {
+      addToCart({ ...product, quantity });
+      setQuantity(1); // Сброс количества после добавления в корзину
     }
   };
 
@@ -22,19 +34,56 @@ function ProductCard({ product, addToCart, addToFavorites }) {
           {product.label}
         </span>
       )}
+
       <button
         className={`favorite-button ${isFavorite ? 'active' : ''}`}
         onClick={handleFavoriteToggle}
       >
         {isFavorite ? <FaHeart /> : <FaRegHeart />}
       </button>
-      <img src={product.image} alt={product.name} />
+
+      <Link to={`/product/${product.id}`}>
+        <img src={product.image} alt={product.name} />
+      </Link>
+
       <h2>{product.name}</h2>
-      <p className="description">{product.description}</p>
-      <p className="price">{product.price} ₽</p>
+
+      <div className="price-section">
+        <p className="retail-price">Розничная: {product.price} ₽</p>
+        <p className="wholesale-price">
+          Оптом (от 5 штук): {product.wholesalePrice || Math.round(product.price * 0.8)} ₽
+        </p>
+      </div>
+
+      <p className="availability">В наличии: {product.quantity || 2536} шт.</p>
+
       <div className="action-row">
-        <button className="add-to-cart" onClick={() => addToCart(product)}>
-          Добавить в корзину
+        <div className="quantity-control">
+          <button
+            type="button"
+            onClick={() => handleQuantityChange(quantity - 1)}
+            disabled={quantity <= 1}
+          >
+            -
+          </button>
+
+          <input
+            type="number"
+            min="1"
+            value={quantity}
+            onChange={(e) => handleQuantityChange(Math.max(1, parseInt(e.target.value) || 1))}
+          />
+
+          <button
+            type="button"
+            onClick={() => handleQuantityChange(quantity + 1)}
+          >
+            +
+          </button>
+        </div>
+
+        <button className="add-to-cart" onClick={handleAddToCart}>
+          В корзину
         </button>
       </div>
     </div>
