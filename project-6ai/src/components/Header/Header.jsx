@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Header.scss';
 import '../../index.css';
 import call from '../../assets/svg/call.svg';
@@ -16,6 +16,32 @@ function Header() {
   const [searchQuery, setSearchQuery] = useState('');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
+
+
+  useEffect(() => {
+    window.googleTranslateInit = () => {
+      new window.google.translate.TranslateElement(
+        {
+          pageLanguage: 'ru', 
+          includedLanguages: 'ru,ky,en,de', 
+          layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
+          autoDisplay: false,
+        },
+        'google_translate_element'
+      );
+    };
+
+   
+    const script = document.createElement('script');
+    script.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateInit';
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+     
+      document.body.removeChild(script);
+    };
+  }, []);
 
   const handleSearch = () => {
     if (searchQuery.trim()) {
@@ -59,11 +85,8 @@ function Header() {
                 <img src={call} alt="Телефон" />
                 <p>+7 (965) 237-44-49</p>
               </div>
-              <select>
-                <option value="Ru">Русский</option>
-                <option value="KG">Кыргызча</option>
-                <option value="En">English</option>
-              </select>
+             
+              <div id="google_translate_element"></div>
               <Link to="/login">
                 <p>Личный кабинет</p>
               </Link>
@@ -169,11 +192,7 @@ function Header() {
             <img src={call} alt="Телефон" />
             <p>+7 (965) 237-44-49</p>
           </div>
-          <select className="mobile-language">
-            <option value="Ru">Русский</option>
-            <option value="KG">Кыргызча</option>
-            <option value="En">English</option>
-          </select>
+          <div id="google_translate_element_mobile" className="mobile-language"></div>
         </div>
       </div>
     </header>
