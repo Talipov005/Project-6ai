@@ -29,7 +29,7 @@ function Header() {
   };
 
   return (
-    <header className="header container">
+    <header className="header wrapper">
       <div className="all-header wrapper">
         <div className="top-header">
           <div className="top-container container">
