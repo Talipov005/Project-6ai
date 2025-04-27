@@ -16,8 +16,10 @@ import Proses from './pages/Proses';
 import Mastera from './pages/Mastera';
 import Rabota from './pages/Rabota';
 import Sovet from './pages/Sovet';
-import Detail from './pages/Detail'; // Импорт компонента Detail
-import SearchResults from './pages/SearchResults'; // Импорт компонента SearchResults
+import Detail from './pages/Detail';
+import SearchResults from './pages/SearchResults';
+import GlassReplacement from './pages/GlassReplacement'; // New page import
+import Powerbanks from './pages/Powerbanks'; // New page import
 
 export const router = createBrowserRouter([
   {
@@ -38,10 +40,12 @@ export const router = createBrowserRouter([
       { path: 'rabota', element: <Rabota /> },
       { path: 'sovet', element: <Sovet /> },
       { path: 'products/:id', element: <Products /> },
-      { path: 'product/:id', element: <Detail /> }, // Новый маршрут для Detail
+      { path: 'product/:id', element: <Detail /> },
       { path: 'corzina', element: <Corzina /> },
       { path: 'izbrannyi', element: <Izbrannyi /> },
-      { path: 'search', element: <SearchResults /> }, // Новый маршрут для SearchResults
+      { path: 'search', element: <SearchResults /> },
+      { path: 'glass-replacement', element: <GlassReplacement /> }, // New route
+      { path: 'powerbanks', element: <Powerbanks /> }, // New route
     ],
   },
 ]);
