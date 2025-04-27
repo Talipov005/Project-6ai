@@ -11,25 +11,35 @@ function Detail() {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isAdded, setIsAdded] = useState(false);
   const { addToCart } = useCart();
   const { favorites, addToFavorites, removeFromFavorites } = useFavorites();
   const isFavorite = favorites.some((item) => item.id === product?.id);
+
+  // Helper function to parse price and ensure it's a valid number
+  const parsePrice = (price) => {
+    if (!price) return 0;
+    // Convert to string, remove non-numeric characters except decimal point
+    const cleanedPrice = String(price).replace(/[^\d.]/g, '');
+    return parseFloat(cleanedPrice) || 0;
+  };
 
   useEffect(() => {
     axios
       .get(`https://67f8ed49094de2fe6e9fca0b.mockapi.io/tovary/${id}`)
       .then((res) => {
+        const rawPrice = parsePrice(res.data.price);
         setProduct({
           id: res.data.id,
           name: res.data.name,
-          price: res.data.price,
+          price: rawPrice,
           image: res.data.image,
           description: res.data.description || 'Есть в наличии',
           quantity: res.data.quantity || 1,
           label: res.data.label || '',
           weight: res.data.weight || '66 г',
           country: res.data.country || 'Китай',
-          discountPrice: res.data.discountPrice || res.data.price * 0.9,
+          discountPrice: parsePrice(res.data.discountPrice) || rawPrice * 0.9,
         });
         setLoading(false);
       })
@@ -45,6 +55,15 @@ function Detail() {
       removeFromFavorites(product.id);
     } else {
       addToFavorites(product);
+    }
+  };
+
+  const handleAddToCart = () => {
+    if (product) {
+      addToCart({ ...product, quantity: 1 }); // Default quantity of 1
+      setIsAdded(true); // Change button to "Добавлено!"
+      // Reset to "Добавить в корзину" after 2 seconds
+      // setTimeout(() => setIsAdded(false), 2000);
     }
   };
 
@@ -66,8 +85,8 @@ function Detail() {
         <div className="detail-info">
           <h1>{product.name}</h1>
           <div className="price-section">
-            <span className="price">5000 ₽</span>
-            <span className="original-price">{product.price} ₽</span>
+            <span className="price">{product.discountPrice.toFixed(2)} ₽</span>
+            <span className="original-price">{product.price.toFixed(2)} ₽</span>
           </div>
           <div className="characteristics">
             <p>Вес: {product.weight}</p>
@@ -79,15 +98,25 @@ function Detail() {
           </div>
           <p className="description">{product.description}</p>
           <div className="action-row">
-           
-            <button className="add-to-cart" onClick={() => addToCart(product)}>
-              Добавить в корзину
+            <button
+              className={`add-to-cart ${isAdded ? 'added' : ''}`}
+              onClick={handleAddToCart}
+            >
+              {isAdded ? 'Добавлено!' : 'Добавить в корзину'}
             </button>
             <button
               className={`favorite-text-button ${isFavorite ? 'active' : ''}`}
               onClick={handleFavoriteToggle}
             >
-              {isFavorite ? 'Удалить из избранного' : 'Добавить в избранное'}
+              {isFavorite ? (
+                <>
+                  <FaHeart /> Удалить из избранного
+                </>
+              ) : (
+                <>
+                  <FaRegHeart /> Добавить в избранное
+                </>
+              )}
             </button>
           </div>
           <p className="availability">
