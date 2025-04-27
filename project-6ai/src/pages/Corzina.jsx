@@ -1,17 +1,56 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Corzina.scss';
 import { useCart } from '../contexts/CartContext';
 import { useFavorites } from '../contexts/FavoritesContext';
 import { toast } from 'react-toastify';
-import { FaHeart, FaRegHeart, FaTrash } from 'react-icons/fa';
+import { FaTrash } from 'react-icons/fa';
 
 function Corzina() {
   const { cartItems, removeFromCart, clearCart, updateQuantity } = useCart();
   const { favorites, addToFavorites, removeFromFavorites } = useFavorites();
 
-  const totalPrice = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
-  const totalWeight = cartItems.reduce((sum, item) => sum + (item.weight ? parseFloat(item.weight) : 0) * item.quantity, 0);
+  const [orderDetails, setOrderDetails] = useState({
+    phone: '',
+    email: '',
+    name: '',
+    comment: '',
+    address: ''
+  });
+
+  // Helper function to parse price and ensure it's a valid number
+  const parsePrice = (price) => {
+    if (!price) return 0;
+    // Convert to string, remove non-numeric characters except decimal point
+    const cleanedPrice = String(price).replace(/[^\d.]/g, '');
+    return parseFloat(cleanedPrice) || 0;
+  };
+
+  // Helper function to clean and parse weight
+  const parseWeight = (weight) => {
+    if (!weight) return 0;
+    const cleanedWeight = String(weight).replace(/[^\d.]/g, '');
+    return parseFloat(cleanedWeight) || 0;
+  };
+
+  // Calculate totals with type safety
+  const totalPrice = cartItems.reduce((sum, item) => {
+    const price = parsePrice(item.price);
+    const quantity = Number(item.quantity) || 0;
+    return sum + price * quantity;
+  }, 0);
+
+  const totalItems = cartItems.reduce((sum, item) => sum + (Number(item.quantity) || 0), 0);
+
+  const totalWeight = cartItems.reduce((sum, item) => {
+    const weight = parseWeight(item.weight);
+    const quantity = Number(item.quantity) || 0;
+    return sum + weight * quantity;
+  }, 0);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setOrderDetails((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleCheckout = () => {
     if (cartItems.length === 0) {
@@ -24,8 +63,12 @@ function Corzina() {
         draggable: true,
         theme: "light",
       });
-    } else {
-      toast.success('Заказ успешно оформлен! Спасибо за покупку.', {
+      return;
+    }
+
+    const { phone, email, name, address } = orderDetails;
+    if (!phone || !email || !name || !address) {
+      toast.error('Пожалуйста, заполните все обязательные поля (телефон, email, имя, адрес).', {
         position: "top-right",
         autoClose: 3000,
         hideProgressBar: false,
@@ -34,8 +77,20 @@ function Corzina() {
         draggable: true,
         theme: "light",
       });
-      clearCart(); // Очищаем корзину после оформления
+      return;
     }
+
+    toast.success('Заказ успешно оформлен! Спасибо за покупку.', {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      theme: "light",
+    });
+    clearCart();
+    setOrderDetails({ phone: '', email: '', name: '', comment: '', address: '' });
   };
 
   return (
@@ -67,9 +122,8 @@ function Corzina() {
                     </div>
                   </div>
                   <div className="price-actions">
-                    <p className="price">{item.price * item.quantity} ₽</p>
+                    <p className="price">{(parsePrice(item.price) * (Number(item.quantity) || 0)).toFixed(2)} ₽</p>
                     <div className="actions">
-                      
                       <button className="remove-button" onClick={() => removeFromCart(item.id)}>
                         <FaTrash />
                       </button>
@@ -92,11 +146,70 @@ function Corzina() {
         <div className="order-details">
           <h3>Детали заказа</h3>
           <p>Всего товаров: {totalItems} шт.</p>
-          <p>Сумма заказа: {totalPrice} ₽</p>
-          <p>Вес: {totalWeight || 140} г</p>
-          <h4>Итого: {totalPrice} ₽</h4>
+          <p>Сумма заказа: {totalPrice.toFixed(2)} ₽</p>
+          <p>Вес: {totalWeight.toFixed(2)} г</p>
+          <h4>Итого: {totalPrice.toFixed(2)} ₽</h4>
+
+          <div className="order-form">
+            <h3>Оформление заказа</h3>
+            <div className="form-group">
+              <label htmlFor="name">Имя *</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={orderDetails.name}
+                onChange={handleInputChange}
+                placeholder="Введите ваше имя"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="phone">Номер телефона *</label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                value={orderDetails.phone}
+                onChange={handleInputChange}
+                placeholder="Введите номер телефона"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="email">Gmail *</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={orderDetails.email}
+                onChange={handleInputChange}
+                placeholder="Введите ваш email"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="address">Адрес доставки *</label>
+              <input
+                type="text"
+                id="address"
+                name="address"
+                value={orderDetails.address}
+                onChange={handleInputChange}
+                placeholder="Введите адрес доставки"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="comment">Комментарий к заказу</label>
+              <textarea
+                id="comment"
+                name="comment"
+                value={orderDetails.comment}
+                onChange={handleInputChange}
+                placeholder="Дополнительные пожелания"
+              />
+            </div>
+          </div>
+
           <button className="checkout" onClick={handleCheckout}>
-           Оформить заказ 
+            Оформить заказ
           </button>
         </div>
       )}
