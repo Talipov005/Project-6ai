@@ -13,7 +13,7 @@ function Categories() {
 
   useEffect(() => {
     if (!phoneId) {
-      setError("ID телефона не найден")
+      setError("ID телефона не .найден")
       setLoading(false)
       return
     }
