@@ -69,23 +69,68 @@
     }
   }
 
- 
-  @media (max-width: 1024px) {
+  // Tablet breakpoint (769px - 1024px)
+  @media screen and (max-width: 1024px) {
+    padding: 40px 0;
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+    }
+
+    .phones {
+      gap: 20px;
+    }
+
     .phone-card {
       flex: 0 0 48%;
       padding: 15px;
+
+      img {
+        margin-bottom: 12px;
+      }
+
+      h2 {
+        font-size: 1.1rem;
+      }
+
+      p {
+        font-size: 0.85rem;
+      }
     }
   }
 
-
-  @media (max-width: 768px) {
-    .phone-card {
-      flex: 0 0 100%;
-      padding: 10px;
-    }
+  // Phone breakpoint (max 768px)
+  @media screen and (max-width: 768px) {
+    padding: 30px 0;
 
     h1 {
       font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
+
+    .phones {
+      flex-direction: column;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .phone-card {
+      flex: 0 0 100%;
+      max-width: 350px;
+      padding: 12px;
+
+      img {
+        margin-bottom: 10px;
+      }
+
+      h2 {
+        font-size: 1rem;
+      }
+
+      p {
+        font-size: 0.8rem;
+      }
     }
   }
 }
