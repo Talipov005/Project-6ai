@@ -7,6 +7,7 @@ import { FaHeart, FaRegHeart } from 'react-icons/fa';
 function ProductCard({ product, addToCart }) {
   const { favorites, addToFavorites, removeFromFavorites } = useFavorites();
   const [quantity, setQuantity] = useState(1);
+  const [isAdded, setIsAdded] = useState(false);
 
   const isFavorite = favorites.some((item) => item.id === product.id);
 
@@ -23,7 +24,8 @@ function ProductCard({ product, addToCart }) {
   const handleAddToCart = () => {
     if (quantity > 0) {
       addToCart({ ...product, quantity });
-      setQuantity(1); // Сброс количества после добавления в корзину
+      setIsAdded(true); // Hide button and show confirmation
+      setQuantity(1); // Reset quantity after adding to cart
     }
   };
 
@@ -82,9 +84,13 @@ function ProductCard({ product, addToCart }) {
           </button>
         </div>
 
-        <button className="add-to-cart" onClick={handleAddToCart}>
-          В корзину
-        </button>
+        {isAdded ? (
+          <span className="added-message">Добавлено!</span>
+        ) : (
+          <button className="add-to-cart" onClick={handleAddToCart}>
+            В корзину
+          </button>
+        )}
       </div>
     </div>
   );
