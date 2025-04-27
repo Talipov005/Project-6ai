@@ -6,12 +6,10 @@ import { FaMobileAlt, FaBatteryFull, FaClock } from "react-icons/fa";
 function Proses() {
   return (
     <div className="wrapper">
-      
       <div className="marquee-banner container">
         <p>💡 Бесплатная диагностика • 🔧 Профессиональный ремонт • ⏱️ Быстрое выполнение • ✅ Гарантия на работы</p>
       </div>
 
-    
       <section className="intro-banner container">
         <h2 className="banner-title">Добро пожаловать в наш сервисный центр!</h2>
         <p className="banner-subtitle">Ваше устройство — в надёжных руках. Мы ценим ваше время и качество ремонта.</p>
@@ -35,7 +33,6 @@ function Proses() {
         </div>
       </section>
 
-     
       <div className="video-container container">
         <video
           src={video}
@@ -54,7 +51,6 @@ function Proses() {
         </div>
       </div>
 
-     
       <section className="why-choose container">
         <h2>Почему выбирают нас?</h2>
         <div className="reasons">

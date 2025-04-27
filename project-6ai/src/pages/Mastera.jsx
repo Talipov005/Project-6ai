@@ -42,28 +42,18 @@ function Mastera() {
   ];
 
   return (
-    <div className="masters-container container">
-      <section className="welcome-section">
-        <h1 className="welcome-title">Добро пожаловать в наш сервисный центр!</h1>
-        <p className="welcome-description">
+    <div className="masters container">
+      <section className="masters-welcome">
+        <h1 className="masters-welcome-title">Добро пожаловать в наш сервисный центр!</h1>
+        <p className="masters-welcome-description">
           Мы гордимся своими мастерами, которые обеспечивают быстрое и качественное обслуживание ваших устройств.
         </p>
       </section>
 
-      <section className="masters-list-section">
-        <h2 className="section-title">Наши мастера</h2>
-        <div className="masters-list">
-          {masters.slice(0, 3).map((master, index) => (
-            <div key={index} className="master-card">
-              <img src={master.image} alt={master.name} className="master-image" />
-              <h3 className="master-name">{master.name}</h3>
-              <p className="master-role">{master.role}</p>
-              <p className="master-description">{master.description}</p>
-            </div>
-          ))}
-        </div>
-        <div className="masters-list">
-          {masters.slice(3).map((master, index) => (
+      <section className="masters-list">
+        <h2 className="masters-list-title">Наши мастера</h2>
+        <div className="masters-grid">
+          {masters.map((master, index) => (
             <div key={index} className="master-card">
               <img src={master.image} alt={master.name} className="master-image" />
               <h3 className="master-name">{master.name}</h3>
